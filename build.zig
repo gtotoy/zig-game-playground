@@ -8,13 +8,13 @@ pub fn build(b: *Builder) void {
 
     exe.addIncludeDir("C:/dev");
 
-    const c89Flags = [_][]const u8{"-std=c89"};
+    const c89Flags = [_][]const u8{"-std=c89", "-Wno-incompatible-function-pointer-types"};
     exe.addCSourceFile("C:/dev/flextgl/flextGL.c", &c89Flags);
+
+    exe.addIncludeDir(".");
 
     const c99Flags = [_][]const u8{"-std=c99"};
     exe.addCSourceFile("src/compile-artifact/sokol_gfx.c", &c99Flags);
-
-    exe.addCSourceFile("src/compile-artifact/HandmadeMath.c", &c99Flags);
 
     exe.addIncludeDir("C:/dev/glfw/include");
     exe.addLibPath("C:/dev/glfw/build/src/Release");
